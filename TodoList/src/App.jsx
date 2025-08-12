@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Editor from "./components/Editor";
 import List from "./components/List";
 import { useState, useRef } from "react";
+import Exam from "./components/Exam";
 
 const mocData = [
   {
@@ -54,9 +55,10 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      {/* <Header />
       <Editor onCreate={onCreate} />
-      <List onDelete={onDelete} onUpdate={onUpdate} todos={todos} />
+      <List onDelete={onDelete} onUpdate={onUpdate} todos={todos} /> */}
+      <Exam />
     </div>
   );
 }
