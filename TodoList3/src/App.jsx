@@ -8,6 +8,7 @@ import {
   useReducer,
   useCallback,
   createContext,
+  useMemo,
 } from "react";
 
 const mocData = [
@@ -45,7 +46,8 @@ function reducer(state, action) {
   }
 }
 
-export const TodoContext = createContext();
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 function App() {
   const [todos, dispatch] = useReducer(reducer, mocData);
   const idRef = useRef(3);
@@ -76,20 +78,18 @@ function App() {
     });
   }, []);
 
+  const MemorizedDispatch = useMemo(() => {
+    return { onCreate, onUpdate, onDelete };
+  }, []);
   return (
     <div className="App">
       <Header />
-      <TodoContext.Provider
-        value={{
-          todos,
-          onCreate,
-          onDelete,
-          onUpdate,
-        }}
-      >
-        <Editor />
-        <List />
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todos}>
+        <TodoDispatchContext.Provider value={MemorizedDispatch}>
+          <Editor />
+          <List />
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   );
 }
