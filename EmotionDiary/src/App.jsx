@@ -25,20 +25,26 @@ function reducer(state, action) {
 const mocData = [
   {
     id: 1,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2025-08-15").getTime(),
     emotionId: 1,
     content: "1번일기입니다",
   },
   {
     id: 2,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2025-08-14").getTime(),
     emotionId: 2,
     content: "2번일기입니다",
   },
+  {
+    id: 3,
+    createdDate: new Date("2025-07-15").getTime(),
+    emotionId: 3,
+    content: "4번일기입니다",
+  },
 ];
 
-const DiaryStateContext = createContext();
-const DiaryDispatchContext = createContext();
+export const DiaryStateContext = createContext();
+export const DiaryDispatchContext = createContext();
 function App() {
   const [data, dispatch] = useReducer(reducer, mocData);
   const idRef = useRef(3);
