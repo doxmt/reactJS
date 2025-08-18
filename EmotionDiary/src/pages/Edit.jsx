@@ -6,6 +6,8 @@ import { useContext, useEffect, useState } from "react";
 import { DiaryDispatchContext, DiaryStateContext } from "../App";
 import useDiary from "../hooks/useDiary";
 
+import usePageTitle from "../hooks/usePageTitle";
+
 const Edit = () => {
   const { onDelete, onUpdate } = useContext(DiaryDispatchContext);
 
@@ -13,6 +15,8 @@ const Edit = () => {
   const nav = useNavigate();
 
   const curDiaryItem = useDiary(params.id);
+
+  usePageTitle(`${params.id}번 일기 수정 - 감정 일기장`);
 
   const onClickDelete = () => {
     if (window.confirm("일기를 정말 삭제하겠습니까 ?")) {
